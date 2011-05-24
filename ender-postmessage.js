@@ -39,6 +39,8 @@
 		addEventListener = 'addEventListener',
 		
 		p_receiveMessage,
+
+                has_postMessage = window[postMessage];
 		
 	  // Method: ender.postMessage
 	  // 
