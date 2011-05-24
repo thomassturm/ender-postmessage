@@ -21,7 +21,6 @@
 // 0.4 - (8/25/2009) Initial release
 
 !function ($) {
-	$.ender({
 	  // A few vars used in non-awesome browsers.
 	  var interval_id,
 		last_hash,
@@ -41,6 +40,8 @@
 		p_receiveMessage,
 
                 has_postMessage = window[postMessage];
+     $.ender({
+
 		
 	  // Method: ender.postMessage
 	  // 
@@ -70,7 +71,7 @@
 	  // 
 	  //  Nothing.
 	  
-	  postMessage = function( message, target_url, target ) {
+	  postMessage: function( message, target_url, target ) {
 		if ( !target_url ) { return; }
 		
 		// Default to parent if unspecified.
@@ -88,7 +89,7 @@
 		  // callback.
 		  target.location = target_url.replace( /#.*$/, '' ) + '#' + (+new Date) + (cache_bust++) + '&' + message;
 		}
-	  };
+	  },
 	  
 	  // Method: ender.receiveMessage
 	  // 
@@ -137,14 +138,14 @@
 	  // 
 	  //  Nothing!
 	  
-	  receiveMessage = p_receiveMessage = function( callback, source_origin, delay ) {
+	  receiveMessage: function( callback, source_origin, delay ) {
 		if ( has_postMessage ) {
 		  // Since the browser supports window.postMessage, the callback will be
 		  // bound to the actual event associated with window.postMessage.
 		  
 		  if ( callback ) {
 			// Unbind an existing callback if it exists.
-			rm_callback && p_receiveMessage();
+			rm_callback && receiveMessage();
 			
 			// Bind the callback. A reference to the callback is stored for ease of
 			// unbinding.
@@ -187,6 +188,6 @@
 			}, delay );
 		  }
 		}
-	  };
-	});  
+	  }
+     });  
 }(ender);
