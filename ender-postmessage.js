@@ -148,7 +148,7 @@
 			// unbinding.
 			rm_callback = function(e) {
 			  if ( ( typeof source_origin === 'string' && e.origin !== source_origin )
-				|| ( $.isFunction( source_origin ) && source_origin( e.origin ) === FALSE ) ) {
+				|| ( typeof source_origin === 'function' && source_origin( e.origin ) === FALSE ) ) {
 				return FALSE;
 			  }
 			  callback( e );
