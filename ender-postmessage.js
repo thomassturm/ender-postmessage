@@ -24,6 +24,7 @@
      // A few vars used in non-awesome browsers
      var interval_id,
 	  last_hash,
+	  original_hash,
 	  cache_bust = 1,
 		
 	  // A var used in awesome browsers.
@@ -178,11 +179,18 @@
 				? delay
 				: 100;
 			
+			original_hash = document.location.hash;
+			
 			interval_id = setInterval(function(){
 			  var hash = document.location.hash,
 				re = /^#?\d+&/;
-			  if ( hash !== last_hash && re.test( hash ) ) {
+			  if ( hash !== last_hash && hash !== original_hash && re.test( hash ) ) {
 				last_hash = hash;
+				if ( original_hash ) {
+					document.location.hash = original_hash; 
+				} else {
+					document.location.hash = ''; 
+				}
 				callback({ data: hash.replace( re, '' ) });
 			  }
 			}, delay );
