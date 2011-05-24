@@ -21,28 +21,28 @@
 // 0.4 - (8/25/2009) Initial release
 
 !function ($) {
-	  // A few vars used in non-awesome browsers.
-	  var interval_id,
-		last_hash,
-		cache_bust = 1,
+     // A few vars used in non-awesome browsers
+     var interval_id,
+	  last_hash,
+	  cache_bust = 1,
 		
-		// A var used in awesome browsers.
-		rm_callback,
+	  // A var used in awesome browsers.
+	  rm_callback,
 		
-		// A few convenient shortcuts.
-		window = this,
-		FALSE = !1,
+	  // A few convenient shortcuts.
+	  window = this,
+	  FALSE = !1,
 		
-		// Reused internal strings.
-		postMessage = 'postMessage',
-		addEventListener = 'addEventListener',
+	  // Reused internal strings.
+	  postMessage = 'postMessage',
+	  addEventListener = 'addEventListener',
 		
-		p_receiveMessage,
+          p_receiveMessage,
 
-                has_postMessage = window[postMessage];
+          has_postMessage = window[postMessage];
+     
      $.ender({
-
-		
+	
 	  // Method: ender.postMessage
 	  // 
 	  // This method will call window.postMessage if available, setting the
