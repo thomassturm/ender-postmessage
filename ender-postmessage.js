@@ -1,50 +1,27 @@
-/*!
+/*
+ * ender postMessage - v0.1 - 5/23/2011
+ * by Thomas Sturm http://www.sturm.to
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ * based on 
+ *
  * jQuery postMessage - v0.5 - 9/11/2009
  * http://benalman.com/projects/jquery-postmessage-plugin/
- * 
  * Copyright (c) 2009 "Cowboy" Ben Alman
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
 
-// Script: jQuery postMessage: Cross-domain scripting goodness
+// Release History
+// ender postMessage
+// 0.1 - (5/23/2011) Initial Fork and Release
 //
-// *Version: 0.5, Last updated: 9/11/2009*
-// 
-// Project Home - http://benalman.com/projects/jquery-postmessage-plugin/
-// GitHub       - http://github.com/cowboy/jquery-postmessage/
-// Source       - http://github.com/cowboy/jquery-postmessage/raw/master/jquery.ba-postmessage.js
-// (Minified)   - http://github.com/cowboy/jquery-postmessage/raw/master/jquery.ba-postmessage.min.js (0.9kb)
-// 
-// About: License
-// 
-// Copyright (c) 2009 "Cowboy" Ben Alman,
-// Dual licensed under the MIT and GPL licenses.
-// http://benalman.com/about/license/
-// 
-// About: Examples
-// 
-// This working example, complete with fully commented code, illustrates one
-// way in which this plugin can be used.
-// 
-// Iframe resizing - http://benalman.com/code/projects/jquery-postmessage/examples/iframe/
-// 
-// About: Support and Testing
-// 
-// Information about what version or versions of jQuery this plugin has been
-// tested with and what browsers it has been tested in.
-// 
-// jQuery Versions - 1.3.2
-// Browsers Tested - Internet Explorer 6-8, Firefox 3, Safari 3-4, Chrome, Opera 9.
-// 
-// About: Release History
-// 
+// jQuery postMessage
 // 0.5 - (9/11/2009) Improved cache-busting
 // 0.4 - (8/25/2009) Initial release
 
 (function($){
-  '$:nomunge'; // Used by YUI compressor.
-  
+
   // A few vars used in non-awesome browsers.
   var interval_id,
     last_hash,
@@ -63,27 +40,23 @@
     
     p_receiveMessage,
     
-    // I couldn't get window.postMessage to actually work in Opera 9.64!
-    has_postMessage = window[postMessage] && !$.browser.opera;
-  
-  // Method: jQuery.postMessage
+  // Method: ender.postMessage
   // 
   // This method will call window.postMessage if available, setting the
   // targetOrigin parameter to the base of the target_url parameter for maximum
   // security in browsers that support it. If window.postMessage is not available,
-  // the target window's location.hash will be used to pass the message. If an
-  // object is passed as the message param, it will be serialized into a string
-  // using the jQuery.param method.
+  // the target window's location.hash will be used to pass the message. 
+  //
+  // Please Note: The ender version does not support the object serialization 
+  // for postMessage
   // 
   // Usage:
   // 
-  // > jQuery.postMessage( message, target_url [, target ] );
+  // > ender.postMessage( message, target_url [, target ] );
   // 
   // Arguments:
   // 
   //  message - (String) A message to be passed to the other frame.
-  //  message - (Object) An object to be serialized into a params string, using
-  //    the jQuery.param method.
   //  target_url - (String) The URL of the other frame this window is
   //    attempting to communicate with. This must be the exact URL (including
   //    any query string) of the other window for this script to work in
@@ -97,11 +70,6 @@
   
   $[postMessage] = function( message, target_url, target ) {
     if ( !target_url ) { return; }
-    
-    // Serialize the message if not a string. Note that this is the only real
-    // jQuery dependency for this script. If removed, this script could be
-    // written as very basic JavaScript.
-    message = typeof message === 'string' ? message : $.param( message );
     
     // Default to parent if unspecified.
     target = target || parent;
@@ -120,7 +88,7 @@
     }
   };
   
-  // Method: jQuery.receiveMessage
+  // Method: ender.receiveMessage
   // 
   // Register a single callback for either a window.postMessage call, if
   // supported, or if unsupported, for any change in the current window
@@ -145,11 +113,11 @@
   // 
   // Usage:
   // 
-  // > jQuery.receiveMessage( callback [, source_origin ] [, delay ] );
+  // > ender.receiveMessage( callback [, source_origin ] [, delay ] );
   // 
   // Arguments:
   // 
-  //  callback - (Function) This callback will execute whenever a <jQuery.postMessage>
+  //  callback - (Function) This callback will execute whenever a <ender.postMessage>
   //    message is received, provided the source_origin matches. If callback is
   //    omitted, any existing receiveMessage event bind or polling loop will be
   //    canceled.
@@ -219,4 +187,4 @@
     }
   };
   
-})(jQuery);
+})(ender);
