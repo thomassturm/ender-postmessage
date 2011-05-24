@@ -1,5 +1,4 @@
 # ender-postMessage: Cross-Domain Messaging #
-[http://benalman.com/projects/jquery-postmessage-plugin/](http://benalman.com/projects/jquery-postmessage-plugin/)
 
 Version: 0.1, Last updated: 5/23/2011
 
