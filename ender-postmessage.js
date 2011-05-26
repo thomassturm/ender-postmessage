@@ -20,7 +20,7 @@
 // 0.5 - (9/11/2009) Improved cache-busting
 // 0.4 - (8/25/2009) Initial release
 
-!function ($) {
+!function (window) {
      // A few vars used in non-awesome browsers
      var interval_id,
 	  last_hash,
@@ -37,12 +37,10 @@
 	  // Reused internal strings.
 	  postMessage = 'postMessage',
 	  addEventListener = 'addEventListener',
-		
-          p_receiveMessage,
 
-          has_postMessage = window[postMessage];
+      has_postMessage = window[postMessage];
      
-     $.ender({
+      fn = {};
 	
 	  // Method: ender.postMessage
 	  // 
@@ -72,7 +70,7 @@
 	  // 
 	  //  Nothing.
 	  
-	  postMessage: function( message, target_url, target ) {
+	  fn.postMessage = function( message, target_url, target ) {
 		if ( !target_url ) { return; }
 		
 		// Default to parent if unspecified.
@@ -90,7 +88,7 @@
 		  // callback.
 		  target.location = target_url.replace( /#.*$/, '' ) + '#' + (+new Date) + (cache_bust++) + '&' + message;
 		}
-	  },
+	  };
 	  
 	  // Method: ender.receiveMessage
 	  // 
@@ -139,7 +137,7 @@
 	  // 
 	  //  Nothing!
 	  
-	  receiveMessage: function( callback, source_origin, delay ) {
+	  fn.receiveMessage = function( callback, source_origin, delay ) {
 		if ( has_postMessage ) {
 		  // Since the browser supports window.postMessage, the callback will be
 		  // bound to the actual event associated with window.postMessage.
@@ -196,6 +194,6 @@
 			}, delay );
 		  }
 		}
-	  }
-     });  
-}(ender);
+	  };
+	  module.exports = {postMessage: fn.postMessage, receiveMessage: fn.receiveMessage};
+}(window);
