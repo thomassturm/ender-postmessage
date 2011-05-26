@@ -1,6 +1,6 @@
 # ender-postMessage: Cross-Domain Messaging #
 
-Version: 0.1, Last updated: 5/23/2011
+Version: 0.1.2, Last updated: 5/26/2011
 
 Based on Ben Alman's jQuery-postMessage [http://benalman.com/projects/jquery-postmessage-plugin/](http://benalman.com/projects/jquery-postmessage-plugin/)
 
@@ -9,6 +9,7 @@ ender-postMessage enables simple and easy window.postMessage communication in br
 
 ## Release History ##
 
+0.1.2 - (5/26/2011) Ender integration
 0.1 - (5/23/2011) Initial Fork and Release
 
 
