@@ -144,7 +144,7 @@
 		  
 		  if ( callback ) {
 			// Unbind an existing callback if it exists.
-			rm_callback && receiveMessage();
+			rm_callback && fn.receiveMessage();
 			
 			// Bind the callback. A reference to the callback is stored for ease of
 			// unbinding.
